@@ -1,0 +1,18 @@
+version: '3.3'
+
+services:
+  db:
+    image: mysql:8.0.29-oracle
+    container_name: mysql
+    volumes:
+      - ./db-data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootroot123
+      MYSQL_DATABASE: asdf
+      MYSQL_PASSWORD: rootroot123
+    ports:
+      - '3306:3306'
+
+volumes:
+  db-data:
