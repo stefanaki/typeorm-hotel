@@ -25,37 +25,57 @@ export enum CustomerVerificationIdType {
 
 @Entity('customers')
 export class Customer extends BaseEntity {
-	@PrimaryGeneratedColumn('uuid')
-	nfc_id: string;
+	populateCustomer(
+		firstName: string,
+		lastName: string,
+		gender: CustomerGender,
+		dateOfBirth: Date,
+		verifId: string,
+		verifIdType: CustomerVerificationIdType,
+		verifDate: Date
+	) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.gender = gender;
+		this.dateOfBirth = dateOfBirth;
+		this.verifId = verifId;
+		this.verifIdType = verifIdType;
+		this.verifDate = verifDate;
+	}
 
-	@Column()
-	first_name: string;
+	@PrimaryGeneratedColumn('uuid', { name: 'nfc_id' })
+	nfcId: string;
 
-	@Column()
-	last_name: string;
+	@Column({ name: 'first_name' })
+	firstName: string;
+
+	@Column({ name: 'last_name' })
+	lastName: string;
 
 	@Column({
+		name: 'gender',
 		type: 'enum',
 		enum: CustomerGender,
 		default: CustomerGender.Male
 	})
 	gender: CustomerGender;
 
-	@Column({ type: 'date' })
-	date_of_birth: string;
+	@Column({ name: 'date_of_birth', type: 'date' })
+	dateOfBirth: Date;
 
-	@Column({ unique: true })
-	verif_id: string;
+	@Column({ name: 'verif_id', unique: true })
+	verifId: string;
 
 	@Column({
+		name: 'verif_id_type',
 		type: 'enum',
 		enum: CustomerVerificationIdType,
 		default: CustomerVerificationIdType.Id
 	})
-	verif_id_type: CustomerVerificationIdType;
+	verifIdType: CustomerVerificationIdType;
 
-	@Column({ type: 'date' })
-	verif_date: string;
+	@Column({ name: 'verif_date', type: 'date' })
+	verifDate: Date;
 
 	@OneToMany(() => CustomerPhone, (phone) => phone.customer)
 	phones: CustomerPhone[];

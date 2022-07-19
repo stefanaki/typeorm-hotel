@@ -11,11 +11,11 @@ import { Customer } from './Customer';
 export class CustomerPhone extends BaseEntity {
 	constructor(phone: string) {
 		super();
-		this.phone_num = phone;
+		this.phoneNum = phone;
 	}
 
-	@PrimaryColumn()
-	phone_num: string;
+	@PrimaryColumn({ name: 'phone_num' })
+	phoneNum: string;
 
 	@ManyToOne(() => Customer, (customer) => customer.phones, {
 		nullable: false,

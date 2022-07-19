@@ -13,13 +13,14 @@ export enum ServiceType {
 
 @Entity('services')
 export class Service extends BaseEntity {
-	@PrimaryGeneratedColumn({ type: 'int' })
-	service_id: number;
+	@PrimaryGeneratedColumn({ name: 'service_id', type: 'int' })
+	serviceId: number;
 
 	@Column({
+		name: 'service_type',
 		type: 'enum',
 		enum: ServiceType,
 		default: ServiceType.Room
 	})
-	service_type: ServiceType;
+	serviceType: ServiceType;
 }

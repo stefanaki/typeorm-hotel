@@ -11,8 +11,8 @@ import { Place } from './Place';
 
 @Entity('visit_log')
 export class Visit extends BaseEntity {
-	@PrimaryGeneratedColumn('rowid')
-	v_log_id: number;
+	@PrimaryGeneratedColumn('rowid', { name: 'v_log_id' })
+	visitLogId: number;
 
 	@ManyToOne(() => Customer, (customer) => customer.visits, {
 		nullable: false,
@@ -30,9 +30,9 @@ export class Visit extends BaseEntity {
 	@JoinColumn({ name: 'place_id' })
 	place: Place;
 
-	@Column({ type: 'datetime' })
-	timestamp_in: Date;
+	@Column({ name: 'timestamp_in', type: 'datetime' })
+	timestampIn: Date;
 
-	@Column({ type: 'datetime', nullable: true })
-	timestamp_out: Date;
+	@Column({ name: 'timestamp_out', type: 'datetime', nullable: true })
+	timestampOut: Date;
 }

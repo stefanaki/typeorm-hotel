@@ -11,8 +11,8 @@ import { Place } from './Place';
 
 @Entity('have_access')
 export class Access extends BaseEntity {
-	@PrimaryGeneratedColumn('rowid')
-	access_id: number;
+	@PrimaryGeneratedColumn('rowid', { name: 'access_id' })
+	accessId: number;
 
 	@ManyToOne(() => Customer, (customer) => customer.accesses, {
 		nullable: false,
@@ -30,9 +30,9 @@ export class Access extends BaseEntity {
 	@JoinColumn({ name: 'place_id' })
 	place: Place;
 
-	@Column({ type: 'datetime' })
-	start_date_time: Date;
+	@Column({ name: 'start_date_time', type: 'datetime' })
+	startDateTime: Date;
 
-	@Column({ type: 'datetime', nullable: true })
-	end_date_time: Date;
+	@Column({ name: 'end_date_time', type: 'datetime', nullable: true })
+	endDateTime: Date;
 }

@@ -14,7 +14,7 @@ export class CustomerEmail extends BaseEntity {
 		this.email = email;
 	}
 
-	@PrimaryColumn()
+	@PrimaryColumn({ name: 'email' })
 	email: string;
 
 	@ManyToOne(() => Customer, (customer) => customer.emails, {

@@ -12,11 +12,11 @@ import { RegisterService } from './RegisterService';
 
 @Entity('enroll_in')
 export class Enrollment extends BaseEntity {
-	@PrimaryGeneratedColumn('rowid')
-	enrollment_id: number;
+	@PrimaryGeneratedColumn('rowid', { name: 'enrollment_id' })
+	enrollmentId: number;
 
-	@Column({ type: 'numeric', precision: 8, scale: 2 })
-	enroll_price: number;
+	@Column({ name: 'enroll_date_time', type: 'timestamp' })
+	enrollDateTime: Date;
 
 	@ManyToOne(() => Customer, (customer) => customer.enrollments, {
 		nullable: false,
@@ -33,7 +33,4 @@ export class Enrollment extends BaseEntity {
 	})
 	@JoinColumn({ name: 'service_id' })
 	service: RegisterService;
-
-	@AfterInsert()
-	async giveRoomAccess() {}
 }

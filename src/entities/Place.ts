@@ -17,14 +17,14 @@ export enum PlaceType {
 
 @Entity('places')
 export class Place extends BaseEntity {
-	@PrimaryColumn()
-	place_id: number;
+	@PrimaryColumn({ name: 'place_id' })
+	placeId: number;
 
-	@Column({ type: 'varchar', precision: 5 })
-	place_description: string;
+	@Column({ name: 'place_description', type: 'varchar', precision: 5 })
+	placeDescription: string;
 
-	@Column({ type: 'enum', enum: PlaceType })
-	place_type: PlaceType;
+	@Column({ name: 'place_type', type: 'enum', enum: PlaceType })
+	placeType: PlaceType;
 
 	@ManyToOne(() => Place, (place) => place.floor, {
 		nullable: true,
@@ -50,6 +50,6 @@ export class Place extends BaseEntity {
 	@JoinColumn({ name: 'offered_service_id' })
 	offered_service: Service;
 
-	@Column({ type: 'int' })
-	room_capacity: number;
+	@Column({ name: 'room_capacity', type: 'int' })
+	roomCapacity: number;
 }
