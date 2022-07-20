@@ -1,22 +1,48 @@
-import a from 'reflect-metadata';
 import { appDataSource, server } from './config/config';
-import {
-	Customer,
-	CustomerGender,
-	CustomerVerificationIdType
-} from './entities/Customer';
-
-import { parse } from 'csv-parse';
-import fs from 'fs';
-import { parse as dateparse } from 'date-fns';
+import { Customer } from './entities/Customer';
 
 import express from 'express';
-import { CustomerPhone } from './entities/CustomerPhone';
-import { CustomerEmail } from './entities/CustomerEmail';
+import { Enrollment } from './entities/Enrollment';
+import { ServiceType } from './entities/Service';
+import { RegisterService } from './entities/RegisterService';
 
 appDataSource
 	.initialize()
 	.then(async () => {
+		let customer: Customer = await appDataSource.getRepository(Customer).findOneOrFail({
+			where: {
+				nfcId: '5793cfb2-a984-408b-b0de-6cf32c4a3921'
+			}
+		});
+
+		let enroll = appDataSource.getRepository(Enrollment).create({
+			enrollmentId: undefined,
+			customer: customer,
+			enrollDateTime: new Date(),
+			service: await appDataSource
+				.getRepository(RegisterService)
+				.findOneOrFail({ where: { serviceType: ServiceType.Room } }),
+		});
+
+
+		console.log('=======');
+		await enroll.save();
+
+		console.log('=======');
+		
+		enroll = appDataSource.getRepository(Enrollment).create({
+			enrollmentId: undefined,
+			customer: customer,
+			enrollDateTime: new Date(),
+			service: await appDataSource
+				.getRepository(RegisterService)
+				.findOneOrFail({ where: { serviceType: ServiceType.Sauna } }),
+		});
+
+		console.log('=======');
+		await enroll.save();
+
+		console.log('=======');
 		let app = express();
 
 		app.get('/customers', async (req, res) => {
