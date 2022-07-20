@@ -48,8 +48,8 @@ export class Place extends BaseEntity {
 		onUpdate: 'CASCADE'
 	})
 	@JoinColumn({ name: 'offered_service_id' })
-	offered_service: Service;
+	offeredService: Service;
 
-	@Column({ name: 'room_capacity', type: 'int' })
+	@Column({ name: 'room_capacity', type: 'int', nullable: true })
 	roomCapacity: number;
 }

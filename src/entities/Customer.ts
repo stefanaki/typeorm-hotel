@@ -25,24 +25,6 @@ export enum CustomerVerificationIdType {
 
 @Entity('customers')
 export class Customer extends BaseEntity {
-	populateCustomer(
-		firstName: string,
-		lastName: string,
-		gender: CustomerGender,
-		dateOfBirth: Date,
-		verifId: string,
-		verifIdType: CustomerVerificationIdType,
-		verifDate: Date
-	) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.gender = gender;
-		this.dateOfBirth = dateOfBirth;
-		this.verifId = verifId;
-		this.verifIdType = verifIdType;
-		this.verifDate = verifDate;
-	}
-
 	@PrimaryGeneratedColumn('uuid', { name: 'nfc_id' })
 	nfcId: string;
 

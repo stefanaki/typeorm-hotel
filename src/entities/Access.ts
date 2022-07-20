@@ -11,7 +11,7 @@ import { Place } from './Place';
 
 @Entity('have_access')
 export class Access extends BaseEntity {
-	@PrimaryGeneratedColumn('rowid', { name: 'access_id' })
+	@PrimaryGeneratedColumn('increment', { name: 'access_id' })
 	accessId: number;
 
 	@ManyToOne(() => Customer, (customer) => customer.accesses, {
