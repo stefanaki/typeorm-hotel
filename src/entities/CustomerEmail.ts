@@ -9,11 +9,6 @@ import { Customer } from './Customer';
 
 @Entity('customer_emails')
 export class CustomerEmail extends BaseEntity {
-	constructor(email: string) {
-		super();
-		this.email = email;
-	}
-
 	@PrimaryColumn({ name: 'email' })
 	email: string;
 

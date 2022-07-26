@@ -11,8 +11,8 @@ import { Service } from './Service';
 
 @Entity('use_charge_log')
 export class ServiceUse extends BaseEntity {
-	@PrimaryGeneratedColumn('rowid', {name: 'use_log_id'})
-	useLogId: number;
+	@PrimaryGeneratedColumn('uuid', { name: 'use_log_id' })
+	useLogId: string;
 
 	@ManyToOne(() => Customer, (customer) => customer.uses, {
 		nullable: false,

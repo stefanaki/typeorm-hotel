@@ -4,7 +4,7 @@ import {
 	Entity,
 	JoinColumn,
 	ManyToOne,
-	PrimaryColumn
+	PrimaryGeneratedColumn
 } from 'typeorm';
 import { Service } from './Service';
 
@@ -17,7 +17,7 @@ export enum PlaceType {
 
 @Entity('places')
 export class Place extends BaseEntity {
-	@PrimaryColumn({ name: 'place_id' })
+	@PrimaryGeneratedColumn('increment', { name: 'place_id' })
 	placeId: number;
 
 	@Column({ name: 'place_description', type: 'varchar', precision: 5 })

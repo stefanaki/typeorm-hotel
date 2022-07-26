@@ -16,8 +16,8 @@ import { ServiceType } from './Service';
 
 @Entity('enroll_in')
 export class Enrollment extends BaseEntity {
-	@PrimaryGeneratedColumn('increment', { name: 'enrollment_id' })
-	enrollmentId: number;
+	@PrimaryGeneratedColumn('uuid', { name: 'enrollment_id' })
+	enrollmentId: string;
 
 	@Column({ name: 'enroll_date_time', type: 'timestamp' })
 	enrollDateTime: Date;

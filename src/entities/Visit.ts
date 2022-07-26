@@ -11,8 +11,8 @@ import { Place } from './Place';
 
 @Entity('visit_log')
 export class Visit extends BaseEntity {
-	@PrimaryGeneratedColumn('rowid', { name: 'v_log_id' })
-	visitLogId: number;
+	@PrimaryGeneratedColumn('uuid', { name: 'v_log_id' })
+	visitLogId: string;
 
 	@ManyToOne(() => Customer, (customer) => customer.visits, {
 		nullable: false,
