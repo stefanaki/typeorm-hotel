@@ -1,13 +1,9 @@
 import { appDataSource, server } from './config/config';
 import customerRouter from './routes/customer.routes';
 import enrollmentRouter from './routes/enrollment.routes'
+import morgan from 'morgan';
 
 import express from 'express';
-// import { Enrollment } from './entities/Enrollment';
-// import { ServiceType } from './entities/Service';
-// import { RegisterService } from './entities/RegisterService';
-// import { parse } from 'date-fns';
-
 appDataSource
 	.initialize()
 	.then(async () => {
@@ -59,6 +55,7 @@ appDataSource
 		console.log('OK')
 		let app = express();
 
+		app.use(morgan('combined'));
 		app.use('/customer', customerRouter);
 		app.use('/enrollment', enrollmentRouter);
 
